@@ -1,7 +1,10 @@
 # [econicles.com](http://econicles.com)
 
-economy & stock viewer
+economy & stock viewer<br>
 
+![econicles](https://i.imgur.com/0L7Jfa4.png)
+
+API's used [AlphaVantage](https://www.alphavantage.co), [IEXCloud](https://iexcloud.io), [FRED](https://fred.stlouisfed.org) & [SlickCharts](https://www.slickcharts.com/sp500)
 
 ## local setup
 
@@ -21,3 +24,4 @@ Run App.main() in debug mode (for hotswap) with arguments
 -Dlog4j2.configurationFile=log4j2-dev.xml
 -XX:+AllowEnhancedClassRedefinition # if hotreload!
 ```
+
