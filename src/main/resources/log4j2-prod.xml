@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+
+    <Appenders>
+
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%style{%d{HH:mm:ss.SSS}}{blue} [%t] %highlight{%-5level}{FATAL=bg_red, ERROR=red, WARN=yellow, INFO=green} %logger{36} - %message\n"/>
+        </Console>
+
+        <Async name="Async">
+            <AppenderRef ref="RollingFile"/>
+        </Async>
+
+        <RollingFile name="RollingFile" fileName="logs/app.log" filePattern="logs/stocks-%d{dd-MMM}.log.gz"
+                     ignoreExceptions="false">
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="50MB"/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+
+    </Appenders>
+
+
+    <Loggers>
+
+        <Logger name="org.eclipse.jetty" level="INFO"/>
+        <Logger name="io.methvin.watcher" level="INFO"/>
+        <Logger name="io.micrometer.core" level="INFO"/>
+
+        <Root level="DEBUG">
+            <AppenderRef ref="Async" level="INFO"/>
+        </Root>
+
+    </Loggers>
+
+</Configuration>

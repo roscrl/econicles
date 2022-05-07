@@ -1,0 +1,27 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fastest-fade {
+    animation: fadeIn;
+    animation-duration: 0.15s;
+    animation-timing-function: ease-in-out;
+}
+
+.fast-fade {
+    animation: fadeIn;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-in-out;
+}
+
+body {
+    touch-action: pan-y;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: transparent;
+}
