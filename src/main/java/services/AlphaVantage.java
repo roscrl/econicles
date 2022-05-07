@@ -25,7 +25,7 @@ public class AlphaVantage {
     public static final AlphaVantage INSTANCE = new AlphaVantage();
 
     private final String baseUrl = "https://www.alphavantage.co/query?";
-    private final String tokenSecret;
+    private final String tokenSecret = Env.alphaVantageSecret;
 
     private final HttpClient   httpClient = HttpClient.newHttpClient();
     private final ObjectMapper mapper     = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).registerModule(new EmptyStringAsNullModule());
@@ -33,10 +33,6 @@ public class AlphaVantage {
     private final Cache<String, Object> cache = Caffeine.newBuilder()
             .expireAfterWrite(7, TimeUnit.DAYS)
             .build();
-
-    public AlphaVantage() {
-        tokenSecret = Env.alphaVantageSecret;
-    }
 
     public List<IncomeStatement> annualIncomeStatements(String symbol) {
 

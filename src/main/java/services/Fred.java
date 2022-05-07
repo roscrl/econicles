@@ -21,7 +21,7 @@ public class Fred {
     public static final Fred INSTANCE = new Fred();
 
     private final String baseUrl = "https://api.stlouisfed.org/fred/";
-    private final String tokenSecret;
+    private final String tokenSecret = Env.fredSecret;
 
     private final HttpClient   httpClient = HttpClient.newHttpClient();
     private final ObjectMapper mapper     = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).registerModule(new EmptyStringAsNullModule());
@@ -29,10 +29,6 @@ public class Fred {
     private final Cache<CacheKey, Object> cache = Caffeine.newBuilder()
             .expireAfterWrite(7, TimeUnit.DAYS)
             .build();
-
-    public Fred() {
-        tokenSecret = Env.fredSecret;
-    }
 
     public List<M2MoneySupplyDataPoint> m2MoneySupply() {
 
