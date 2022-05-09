@@ -16,14 +16,13 @@
     <script type="importmap">
             {
               "imports": {
+                "controllers": "../controllers/",
+
                 "turbo": "/webjars/hotwired__turbo/7.1.0/dist/turbo.es2017-esm.js",
                 "stimulus": "/webjars/hotwired__stimulus/3.0.1/dist/stimulus.js",
-                "echarts": "/webjars/echarts/5.3.1/dist/echarts.esm.js",
-                "controllers": "../controllers/"
+                "echarts": "/webjars/echarts/5.3.1/dist/echarts.esm.js"
               }
             }
-
-
     </script>
 
     <script type="module">
@@ -31,7 +30,6 @@
         import { Application } from 'stimulus';
         import StockSearchController from "/controllers/stock_search_controller.js"
         import BasicChartController from "/controllers/basic_chart_controller.js"
-
 
         window.Stimulus = Application.start()
         Stimulus.register("stock-search", StockSearchController)
