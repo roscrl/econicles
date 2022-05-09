@@ -1,5 +1,4 @@
 @template.layout.main(
-searchBar = @`@template.components.searchBar(autofocus = false)`,
 content = @`
     <div class="absolute top-1/4 left-1/2 transform -translate-y-1/2 -translate-x-1/2 px-4 w-full sm:w-96">
         <div class="flex gap-1">

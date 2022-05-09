@@ -1,5 +1,5 @@
 @param String title = "Econicles"
-@param gg.jte.Content searchBar
+@param gg.jte.Content searchBar = null
 @param gg.jte.Content content
 
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
 
 @template.components.head(title = title)
 
-${searchBar}
+${searchBar == null ? @`@template.components.searchBar(autofocus = false)` : searchBar}
 
 ${content}
 
