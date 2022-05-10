@@ -80,16 +80,6 @@ public class App {
             staticFiles.directory = "views/controllers";
             staticFiles.hostedPath = "/controllers";
         });
-        config.addStaticFiles(staticFiles -> {
-            staticFiles.location = Location.CLASSPATH;
-            staticFiles.directory = "views/pages";
-            staticFiles.hostedPath = "/pages";
-        });
-        config.addStaticFiles(staticFiles -> {
-            staticFiles.location = Location.CLASSPATH;
-            staticFiles.directory = "views/frames";
-            staticFiles.hostedPath = "/frames";
-        });
     }
 
     private void setupErrorHandling(Javalin javalin) {
