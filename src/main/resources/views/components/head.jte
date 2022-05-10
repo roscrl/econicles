@@ -26,6 +26,9 @@
 
     <script type="module">
         import "unpoly"
+
+        // stop highlighting changed fragment when navigating links
+        up.fragment.config.navigateOptions.focus = false
         up.boot() // safari needs this for unpoly and importmap shim
 
         import { Application } from "stimulus"

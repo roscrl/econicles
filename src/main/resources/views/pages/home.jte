@@ -168,7 +168,7 @@ content = @`
     <div>
         <ol class="mx-2 2xl:mx-64 list-decimal list-inside lg:columns-3 md:columns-2">
             @for(var ticker : spy500Companies)
-                <a href="/stock/${ticker.symbol()}" up-follow up-focus="false" up-instant>
+                <a href="/stock/${ticker.symbol()}" up-follow up-instant>
                     <li class="hover:bg-black hover:text-white rounded-md px-2 mx-auto truncate">${ticker.name()}
                         <span class="float-right">${ticker.symbol()}</span></li>
                 </a>

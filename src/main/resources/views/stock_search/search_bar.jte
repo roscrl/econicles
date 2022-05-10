@@ -4,7 +4,9 @@
 
 <div class="grid grid-cols-14 mt-1 sm:pt-[1rem] py-2 items-center mr-2 lg:mr-0">
 
-    <a href="/" class="p-6 hover:fill-blue-600 col-span-2 justify-self-center">
+    <a href="/"
+       up-follow
+       class="p-6 hover:fill-blue-600 col-span-2 justify-self-center">
         <svg class="h-7 w-7 sm:h-10 sm:w-10" viewBox="0 0 48 48"
              xmlns="http://www.w3.org/2000/svg">
             <path d="M25 7h-2L5 26a1 1 0 0 0 0 1v18l1 2 2 1h10l1-1V31h10v16l1 1h10l2-1 1-2V27a1 1 0 0 0 0-1L25 7Z"/>
@@ -24,17 +26,17 @@
 
         <div class="flex justify-between lg:w-[24rem] lg:mx-auto mt-2 gap-1 sm:gap-1 pb-[0.7rem] overflow-x-auto"
              data-stock-search-target="symbolHotbar">
-            <a href="/stock/AAPL"
+            <a href="/stock/AAPL" up-follow up-preload
                class="border rounded-md px-2 sm:w-[4rem] text-center betterhover:hover:bg-black focus-within:bg-black betterhover:hover:text-white">AAPL</a>
-            <a href="/stock/MSFT"
+            <a href="/stock/MSFT" up-follow up-preload
                class="border rounded-md px-2 sm:w-[4rem] text-center betterhover:hover:bg-[#005DA6] betterhover:hover:text-white">MSFT</a>
-            <a href="/stock/AMZN"
+            <a href="/stock/AMZN" up-follow up-preload
                class="border rounded-md px-2 sm:w-[4rem] text-center betterhover:hover:bg-[#FF9900] betterhover:hover:text-white">AMZN</a>
-            <a href="/stock/TSLA"
+            <a href="/stock/TSLA" up-follow up-preload
                class="border rounded-md px-2 sm:w-[4rem] text-center betterhover:hover:bg-[#E31937] betterhover:hover:text-white">TSLA</a>
-            <a href="/stock/BRK.B"
+            <a href="/stock/BRK.B" up-follow up-preload
                class="border rounded-md px-2 sm:w-[4rem] text-center betterhover:hover:bg-[#2D2D94] betterhover:hover:text-white">BRK.B</a>
-            <a href="/stock/JPM"
+            <a href="/stock/JPM" up-follow up-preload
                class="border rounded-md px-2 sm:w-[4rem] text-center betterhover:hover:bg-[#503629] betterhover:hover:text-white">JPM</a>
         </div>
 
