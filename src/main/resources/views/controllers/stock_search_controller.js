@@ -2,36 +2,36 @@ import { Controller } from 'stimulus';
 
 
 export default class extends Controller {
-    static targets = ["search"]
+    static targets = ["search", "symbolHotbar", "searchResults"]
 
     initialize() {
         this.watchForOutsideClicks()
     }
 
     submit() {
-        if (document.getElementById("stock_search_input").value === "") {
+        if (this.searchTarget.value === "") {
             this.clearSearchResults()
             return
         }
-        this.element.requestSubmit()
+        up.submit(this.searchTarget, {target: '#search_results', animation: "move-to-bottom"});
         this.disableTabbingSymbolHotBar()
     }
 
     disableTabbingSymbolHotBar() {
-        for (const element of document.getElementById("symbol_hotbar").children) {
+        for (const element of this.symbolHotbarTarget.children) {
             element.tabIndex = "-1"
         }
     }
 
     enableTabbingSymbolHotBar() {
-        for (const element of document.getElementById("symbol_hotbar").children) {
+        for (const element of this.symbolHotbarTarget.children) {
             element.tabIndex = "0"
         }
     }
 
     clearSearchResults() {
-        this.enableTabbingSymbolHotBar();
-        document.getElementById("search_results").replaceChildren()
+        this.enableTabbingSymbolHotBar()
+        this.searchResultsTarget.replaceChildren()
     }
 
     watchForOutsideClicks() {
@@ -39,7 +39,7 @@ export default class extends Controller {
             const withinBoundaries = event.composedPath().includes(this.searchTarget)
 
             if (!withinBoundaries) {
-                this.clearSearchResults();
+                this.clearSearchResults()
             }
         })
     }

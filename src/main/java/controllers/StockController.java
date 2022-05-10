@@ -1,7 +1,6 @@
 package controllers;
 
 import database.Db;
-import helpers.Turbo;
 import io.javalin.core.util.Header;
 import io.javalin.http.Context;
 import org.apache.commons.lang3.StringUtils;
@@ -43,7 +42,7 @@ public class StockController {
                 .get();
 
         var tickers = Db.query.tickerSearch(search);
-        Turbo.renderFrame("frames/stock_search.jte", Map.of("tickers", tickers), ctx);
+        ctx.render("stock_search/components/stock_search_results.jte", Map.of("tickers", tickers));
 
         ctx.header(Header.CACHE_CONTROL, "max-age=604800"); // 1 week cache
     }

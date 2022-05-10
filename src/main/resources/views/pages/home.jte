@@ -22,7 +22,7 @@
 
 @template.layout.main(
 title = "Econicles",
-searchBar = @`@template.components.searchBar(autofocus = true)`,
+searchBar = @`@template.stock_search.search_bar(autofocus = true)`,
 content = @`
     <div class="flex flex-wrap justify-center mx-[0.2rem] sm:mx-0 sm:mt-0 md:mt-2 lg:mx-1 lg:gap-4 xl:mt-6 2xl:max-w-[150rem] 2xl:mx-auto 2xl:gap-x-12 2xl:mt-10">
 
@@ -168,8 +168,8 @@ content = @`
     <div>
         <ol class="mx-2 2xl:mx-64 list-decimal list-inside lg:columns-3 md:columns-2">
             @for(var ticker : spy500Companies)
-                <a href="/stock/${ticker.symbol()}" class="">
-                    <li class="hover:bg-black hover:text-white rounded-md px-2  mx-auto truncate">${ticker.name()}
+                <a href="/stock/${ticker.symbol()}" up-follow up-focus="false" up-instant>
+                    <li class="hover:bg-black hover:text-white rounded-md px-2 mx-auto truncate">${ticker.name()}
                         <span class="float-right">${ticker.symbol()}</span></li>
                 </a>
             @endfor

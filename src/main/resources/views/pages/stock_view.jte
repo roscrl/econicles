@@ -8,7 +8,7 @@
 
 @template.layout.main(
 title = profile.symbol(),
-searchBar = @`@template.components.searchBar(autofocus = false, profile = profile, logo = logo)`,
+searchBar = @`@template.stock_search.search_bar(autofocus = false, profile = profile, logo = logo)`,
 content = @`
     <div class="flex flex-col items-center justify-center mt-6 mb-6">
         <div class="w-full sm:w-[30rem]">

@@ -145,14 +145,14 @@
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
-            <version>3.0.6</version>
+            <version>3.1.0</version>
         </dependency>
 
         <!-- JS Libs -->
         <dependency>
             <groupId>org.webjars.npm</groupId>
-            <artifactId>hotwired__turbo</artifactId>
-            <version>7.1.0</version>
+            <artifactId>unpoly</artifactId>
+            <version>2.5.3</version>
         </dependency>
 
         <dependency>

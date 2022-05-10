@@ -3,6 +3,7 @@
 @param String logo = null
 
 <div class="grid grid-cols-14 mt-1 sm:pt-[1rem] py-2 items-center mr-2 lg:mr-0">
+
     <a href="/" class="p-6 hover:fill-blue-600 col-span-2 justify-self-center">
         <svg class="h-7 w-7 sm:h-10 sm:w-10" viewBox="0 0 48 48"
              xmlns="http://www.w3.org/2000/svg">
@@ -10,15 +11,19 @@
             <path d="m47 23-7-8V2h-8v5l-6-6-2-1-2 1L1 23l-1 2 1 1a2 2 0 0 0 2-1L23 4h2l20 21 1 1 2-1-1-2Z"/>
         </svg>
     </a>
-    <form action="/stock/search" method="get" data-controller="stock-search"
-          class="col-span-12 lg:col-start-5 lg:col-end-11 xl:col-start-6 xl:col-end-10 2xl:col-start-7 2xl:col-end-9 2xl:w-[24rem] 2xl:place-self-center flex flex-col relative">
-        <input type="text" name="search" id="stock_search_input"
-               data-action="stock-search#submit"
+
+    <form action="/stock/search" method="get"
+          data-controller="stock-search" id="search_form"
+          class="flex flex-col relative col-span-12 lg:col-start-5 lg:col-end-11 xl:col-start-6 xl:col-end-10 2xl:col-start-7 2xl:col-end-9 2xl:w-[24rem] 2xl:place-self-center">
+
+        <input type="text" name="search"
                data-stock-search-target="search"
+               data-action="stock-search#submit"
                class="border rounded-md px-2 md:px-3 h-12 text-2xl lg:w-full lg:mx-auto"
                placeholder="APPL Apple..." autofocus="${autofocus}" autocomplete="off">
-        <div class="flex justify-between lg:w-[24rem] lg:mx-auto mt-2 gap-1 sm:gap-1 pb-[0.7rem] overflow-x-auto "
-             id="symbol_hotbar">
+
+        <div class="flex justify-between lg:w-[24rem] lg:mx-auto mt-2 gap-1 sm:gap-1 pb-[0.7rem] overflow-x-auto"
+             data-stock-search-target="symbolHotbar">
             <a href="/stock/AAPL"
                class="border rounded-md px-2 sm:w-[4rem] text-center betterhover:hover:bg-black focus-within:bg-black betterhover:hover:text-white">AAPL</a>
             <a href="/stock/MSFT"
@@ -33,9 +38,7 @@
                class="border rounded-md px-2 sm:w-[4rem] text-center betterhover:hover:bg-[#503629] betterhover:hover:text-white">JPM</a>
         </div>
 
-        <div id="search_results"
-             class="absolute top-0 left-0 bg-white w-full translate-y-12 mt-1 font-semibold fast-fade z-10">
-        </div>
+        @template.stock_search.components.stock_search_results()
 
     </form>
 

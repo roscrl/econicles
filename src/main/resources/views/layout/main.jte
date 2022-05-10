@@ -5,13 +5,17 @@
 <!DOCTYPE html>
 <html lang="en" class="overflow-x-hidden">
 
-<body>
-
 @template.components.head(title = title)
 
-${searchBar == null ? @`@template.components.searchBar(autofocus = false)` : searchBar}
+<body up-main="root">
 
-${content}
+<header>
+    ${searchBar == null ? @`@template.stock_search.search_bar(autofocus = false)` : searchBar}
+</header>
+
+<main>
+    ${content}
+</main>
 
 </body>
 
