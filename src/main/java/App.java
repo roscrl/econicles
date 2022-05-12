@@ -75,11 +75,6 @@ public class App {
             staticFiles.hostedPath = "/assets";
         });
         config.enableWebjars();
-        config.addStaticFiles(staticFiles -> {
-            staticFiles.location = Location.CLASSPATH;
-            staticFiles.directory = "views/controllers";
-            staticFiles.hostedPath = "/controllers";
-        });
     }
 
     private void setupErrorHandling(Javalin javalin) {

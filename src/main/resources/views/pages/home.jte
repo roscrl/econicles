@@ -21,7 +21,6 @@
 @param List<Ticker> spy500Companies
 
 @template.layout.main(
-title = "Econicles",
 searchBar = @`@template.stock_search.search_bar(autofocus = true)`,
 content = @`
     <div class="flex flex-wrap justify-center mx-[0.2rem] sm:mx-0 sm:mt-0 md:mt-2 lg:mx-1 lg:gap-4 xl:mt-6 2xl:max-w-[150rem] 2xl:mx-auto 2xl:gap-x-12 2xl:mt-10">
@@ -183,5 +182,4 @@ content = @`
             Ross
             Carlisle</a>
     </footer>
-`
-)
+`)

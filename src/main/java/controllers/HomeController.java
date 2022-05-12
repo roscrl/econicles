@@ -24,15 +24,7 @@ public class HomeController {
 
         // try http streaming
 
-        ctx.render("pages/home.jte", data());
-
-        ctx.header(Header.CACHE_CONTROL, "max-age=604800"); // 1 week
-
-    }
-
-    private Map<String, ?> data() {
-
-        return Map.ofEntries(
+        var model = Map.ofEntries(
                 entry("m2MoneySupply", fred.m2MoneySupply()),
                 entry("housePrices", fred.housePrices()),
                 entry("houseSupplyEstimate", fred.houseSupplyEstimate()),
@@ -50,6 +42,11 @@ public class HomeController {
                 entry("spy500Prices", fred.spy500Prices()),
                 entry("spy500Companies", slickCharts.getSpy500())
         );
+
+        ctx.render("pages/home.jte", model);
+
+        ctx.header(Header.CACHE_CONTROL, "max-age=604800"); // 1 week
+
     }
 
 }

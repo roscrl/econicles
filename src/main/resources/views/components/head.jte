@@ -10,12 +10,14 @@
     <link rel="stylesheet" type="text/css" href="/assets/main.css">
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" sizes="any"/>
 
+    <link rel="stylesheet" type="text/css" href="/webjars/unpoly/2.5.3/unpoly.css">
+
     <script async src="/webjars/es-module-shims/1.5.2/dist/es-module-shims.js"></script>
 
     <script type="importmap">
             {
               "imports": {
-                "controllers": "../controllers/",
+                "controllers": "/assets/controllers",
 
                 "stimulus": "/webjars/hotwired__stimulus/3.0.1/dist/stimulus.js",
                 "unpoly":   "/webjars/unpoly/2.5.3/unpoly.js",
@@ -29,11 +31,12 @@
 
         // stop highlighting changed fragment when navigating links
         up.fragment.config.navigateOptions.focus = false
+        up.network.config.progressBar = true
         up.boot() // safari needs this for unpoly and importmap shim
 
         import { Application } from "stimulus"
-        import StockSearchController from "/controllers/stock_search_controller.js"
-        import BasicChartController from "/controllers/basic_chart_controller.js"
+        import StockSearchController from "/assets/controllers/stock_search_controller.js"
+        import BasicChartController from "/assets/controllers/basic_chart_controller.js"
 
         window.Stimulus = Application.start()
         Stimulus.register("stock-search", StockSearchController)

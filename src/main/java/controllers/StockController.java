@@ -3,6 +3,7 @@ package controllers;
 import database.Db;
 import io.javalin.core.util.Header;
 import io.javalin.http.Context;
+import io.javalin.http.HttpCode;
 import org.apache.commons.lang3.StringUtils;
 import services.AlphaVantage;
 import services.IEXCloud;
@@ -27,23 +28,26 @@ public class StockController {
 
         var annualIncomeStatements = alphaVantage.annualIncomeStatements(symbol);
 
-        var model = Map.of("logo", iexCloud.logo(symbol),
+        var model = Map.of(
+                "logo", iexCloud.logo(symbol),
                 "profile", iexCloud.companyProfile(symbol),
                 "annualIncomeStatements", annualIncomeStatements);
-        ctx.render("pages/stock_view.jte", model);
 
+        ctx.render("pages/stock_view.jte", model);
         ctx.header(Header.CACHE_CONTROL, "max-age=604800"); // 1 week cache
     }
 
     public void searchHandler(Context ctx) {
         var search = ctx.queryParamAsClass("search", String.class)
                 .check(StringUtils::isNotBlank, "Empty stock search")
-                .check(StringUtils::isAlphanumeric, "Non alphanumeric stock search")
+                .check(StringUtils::isAlphanumericSpace, "Non alphanumeric stock search")
                 .get();
 
         var tickers = Db.query.tickerSearch(search);
-        ctx.render("stock_search/components/stock_search_results.jte", Map.of("tickers", tickers));
 
+        var model = Map.of("tickers", tickers);
+
+        ctx.render("stock_search/components/search_results.jte", model);
         ctx.header(Header.CACHE_CONTROL, "max-age=604800"); // 1 week cache
     }
 

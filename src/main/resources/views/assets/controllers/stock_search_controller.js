@@ -9,7 +9,11 @@ export default class extends Controller {
     }
 
     submit() {
-        if (this.searchTarget.value === "") {
+        const isEmpty = this.searchTarget.value === ""
+        const isOnlyWhiteSpace = /^\s*$/.test(this.searchTarget.value)
+        const isAlphanumericWhitespace = /^[A-Za-z ]+$/.test(this.searchTarget.value)
+
+        if (isEmpty || isOnlyWhiteSpace || !isAlphanumericWhitespace) {
             this.clearSearchResults()
             return
         }
