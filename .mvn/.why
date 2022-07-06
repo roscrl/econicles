@@ -1,0 +1,3 @@
+https://errorprone.info/docs/installation
+
+jvm.config needs to be modified to have above compiler options for errorprone to work

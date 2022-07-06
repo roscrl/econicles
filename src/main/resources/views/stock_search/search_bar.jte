@@ -17,6 +17,6 @@
 
     @template.stock_search._form(autofocus = autofocus)
 
-    @template.stock_search.components.company_profile(profile = profile, logo = logo)
+    @template.stock_search.company_profile(profile = profile, logo = logo)
 
 </div>

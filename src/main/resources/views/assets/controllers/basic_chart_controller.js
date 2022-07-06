@@ -10,13 +10,25 @@ export default class extends Controller {
         const dataset = this.element.dataset
         const dates = dataset.dates.split(" ")
         const values = dataset.values.split(" ")
-        dates.pop() && values.pop() // Remove lingering empty " "
-        // Zip dates + values together [ [date, value], [date,value]... ]
-        const data = dates.map(function (date, i) {
-            return [date, values[i]];
-        })
 
-        const title = dataset.title
+        // zip dates + values together [ [date, value], [date,value]... ]
+        const data = dates.map(function (date, i) {
+            return [date, values[i]]
+        });
+
+        // clean data backwards until first pair with both values filled
+        while (true) {
+            const lastPair = data.at(-1)
+            if (lastPair[0] === "." || lastPair[1] === ".") {
+                data.pop()
+            } else if (lastPair[0] === "" || lastPair[1] === "") {
+                data.pop()
+            } else {
+                break
+            }
+        }
+
+        const title = dataset.title;
         const link = dataset.link
         const yAxisTitle = dataset.ytitle
         const yAxisPaddingLeft = null == dataset.yleftpadding ? "14%" : dataset.yleftpadding;
@@ -35,12 +47,12 @@ export default class extends Controller {
         })
 
         // Even though we only pass in yyyy-MM-dd, we need to reset time after because user locale can change time
-        const lastDate = new Date(data[data.length - 1][0]);
-        lastDate.setMilliseconds(0);
-        lastDate.setSeconds(0);
-        lastDate.setMinutes(0);
-        lastDate.setHours(0);
-        const now = new Date();
+        const lastDate = new Date(data[data.length - 1][0])
+        lastDate.setMilliseconds(0)
+        lastDate.setSeconds(0)
+        lastDate.setMinutes(0)
+        lastDate.setHours(0)
+        const now = new Date()
 
         const option = {
             title: {
@@ -84,7 +96,7 @@ export default class extends Controller {
                     formatter: function (value) {
                         const current = new Date(value)
                         if (current.getTime() === lastDate.getTime() && now.getFullYear() === lastDate.getFullYear()) {
-                            return dateFormatMonthOnly.format(current.getMonth());
+                            return dateFormatMonthOnly.format(current);
                         } else {
                             return current.getFullYear().toString()
                         }

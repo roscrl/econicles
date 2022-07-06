@@ -16,7 +16,7 @@ public class Template {
                 yield templateEngine;
             }
             case DEV -> {
-                DirectoryCodeResolver codeResolver = new DirectoryCodeResolver(Path.of("src", "main", "resources", "views"));
+                var codeResolver = new DirectoryCodeResolver(Path.of("src", "main", "resources", "views"));
                 var templateEngine = TemplateEngine.create(codeResolver, ContentType.Html);
                 templateEngine.setCompileArgs("--enable-preview", "--release", "" + Runtime.version().feature());
                 yield templateEngine;

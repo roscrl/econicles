@@ -82,7 +82,6 @@ public class Db {
 
                 transactionHandle.execute(sql.toString());
 
-
             });
         });
     }

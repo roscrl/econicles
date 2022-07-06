@@ -17,7 +17,6 @@ import services.SlickCharts;
 
 import java.nio.file.Path;
 
-
 public class App {
 
     private static final Logger log = LoggerFactory.getLogger(App.class);
@@ -25,7 +24,12 @@ public class App {
     public final Javalin javalin;
     public final int     defaultPort = (Env.stage == Env.Stage.PROD) ? 80 : 8080;
 
-    public App(HomeController home, StockController stock) {
+    record Controllers(
+        HomeController homeController,
+        StockController stockController
+    ){}
+
+    public App(Controllers controllers) {
 
         switch (Env.stage) {
             case PROD -> log.info("running in production");
@@ -43,15 +47,17 @@ public class App {
             }
         });
 
-        javalin.routes(Routing.routes(home, stock));
+        javalin.routes(Routing.routes(controllers));
         setupErrorHandling(javalin);
 
     }
 
     public static App create() {
         return new App(
-                new HomeController(Fred.INSTANCE, SlickCharts.INSTANCE),
-                new StockController(IEXCloud.INSTANCE, AlphaVantage.INSTANCE)
+                new Controllers(
+                        new HomeController(Fred.INSTANCE, SlickCharts.INSTANCE),
+                        new StockController(IEXCloud.INSTANCE, AlphaVantage.INSTANCE)
+                )
         );
     }
 
@@ -78,18 +84,10 @@ public class App {
     }
 
     private void setupErrorHandling(Javalin javalin) {
-        javalin.exception(AlphaVantage.TooManyRequests.class, (e, ctx) -> {
-            ctx.render("pages/too_many_requests.jte");
-        });
-        javalin.exception(IEXCloud.TooManyRequests.class, (e, ctx) -> {
-            ctx.render("pages/too_many_requests.jte");
-        });
-        javalin.exception(IEXCloud.OutOfCredits.class, (e, ctx) -> {
-            ctx.render("pages/out_of_credits.jte");
-        });
-        javalin.error(404, ctx -> {
-            ctx.render("pages/not_found.jte");
-        });
+        javalin.exception(AlphaVantage.TooManyRequests.class, (e, ctx) -> ctx.render("pages/error/too_many_requests.jte"));
+        javalin.exception(IEXCloud.TooManyRequests.class, (e, ctx) -> ctx.render("pages/error/too_many_requests.jte"));
+        javalin.exception(IEXCloud.OutOfCredits.class, (e, ctx) -> ctx.render("pages/error/out_of_credits.jte"));
+        javalin.error(404, ctx -> ctx.render("pages/error/not_found.jte"));
     }
 
 }

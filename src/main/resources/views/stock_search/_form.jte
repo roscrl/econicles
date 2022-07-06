@@ -26,6 +26,6 @@
            class="border rounded-md px-2 sm:w-[4rem] text-center betterhover:hover:bg-[#503629] betterhover:hover:text-white focus:bg-[#503629] focus:text-white outline-0">JPM</a>
     </div>
 
-    @template.stock_search.components.search_results()
+    @template.stock_search.search_results()
 
 </form>

@@ -5,9 +5,9 @@
 <!DOCTYPE html>
 <html lang="en" class="overflow-x-hidden">
 
-@template.components.head(title = title)
+@template.layout.head(title = title)
 
-<body up-main="root">
+<body up-main="root" class="overflow-visible">
 
 <header>
     ${searchBar == null ? @`@template.stock_search.search_bar(autofocus = false)` : searchBar}

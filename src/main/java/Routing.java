@@ -1,21 +1,19 @@
 import configuration.Env;
 import configuration.Prometheus;
-import controllers.HomeController;
-import controllers.StockController;
 import io.javalin.apibuilder.EndpointGroup;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
 
 public class Routing {
 
-    static EndpointGroup routes(HomeController home, StockController stock) {
+    static EndpointGroup routes(App.Controllers controllers) {
 
         return () -> {
 
-            get("/", home::indexHandler);
+            get("/", controllers.homeController()::indexHandler);
             path("stock", () -> {
-                get("/search", stock::searchHandler);
-                get("/{symbol}", stock::indexHandler);
+                get("/search", controllers.stockController()::searchHandler);
+                get("/{symbol}", controllers.stockController()::indexHandler);
             });
 
             get("/prometheus", Prometheus::scrapeHandler);

@@ -17,7 +17,7 @@ import static org.mockito.Mockito.spy;
 public class SmokeTests {
 
     @Test
-    public void GET_to_symbol_page() throws IOException, InterruptedException {
+    public void GET_to_symbol_page() {
 
         try (var javalin = App.create().javalin.start(0)) {
 
@@ -26,13 +26,11 @@ public class SmokeTests {
                     .get("/stock/AAPL")
                     .then()
                     .statusCode(200);
-
         }
-
     }
 
     @Test
-    public void GET_to_search() throws IOException, InterruptedException {
+    public void GET_to_search() {
 
         try (var javalin = App.create().javalin.start(0)) {
 
@@ -42,13 +40,11 @@ public class SmokeTests {
                     .then()
                     .statusCode(200)
                     .body(containsString("Apple"));
-
         }
-
     }
 
     @Test
-    public void GET_to_home() throws IOException, InterruptedException {
+    public void GET_to_home() {
 
         var fred = spy(new Fred());
         doReturn(List.of()).when(fred).m2MoneySupply();
@@ -67,17 +63,19 @@ public class SmokeTests {
         doReturn(List.of()).when(fred).jobVacancies();
         doReturn(List.of()).when(fred).recessionProbabilities();
 
-        try (var javalin = new App(new HomeController(fred, SlickCharts.INSTANCE),
-                new StockController(IEXCloud.INSTANCE, AlphaVantage.INSTANCE)).javalin.start(0)) {
+        try (var javalin = new App(
+                new App.Controllers(
+                        new HomeController(fred, SlickCharts.INSTANCE),
+                        new StockController(IEXCloud.INSTANCE, AlphaVantage.INSTANCE)
+                )
+        ).javalin.start(0)) {
 
             given().port(javalin.port())
                     .when()
                     .get("/")
                     .then()
                     .statusCode(200);
-
         }
-
     }
 
 }

@@ -47,7 +47,7 @@ public class StockController {
 
         var model = Map.of("tickers", tickers);
 
-        ctx.render("stock_search/components/search_results.jte", model);
+        ctx.render("stock_search/search_results.jte", model);
         ctx.header(Header.CACHE_CONTROL, "max-age=604800"); // 1 week cache
     }
 

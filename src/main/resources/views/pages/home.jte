@@ -25,7 +25,7 @@ searchBar = @`@template.stock_search.search_bar(autofocus = true)`,
 content = @`
     <div class="flex flex-wrap justify-center mx-[0.2rem] sm:mx-0 sm:mt-0 md:mt-2 lg:mx-1 lg:gap-4 xl:mt-6 2xl:max-w-[150rem] 2xl:mx-auto 2xl:gap-x-12 2xl:mt-10">
 
-        <div class="w-full sm:w-[22rem] lg:w-[28rem]  h-[22rem] fastest-fade" data-controller="basic-chart"
+        <div class="w-full sm:w-[22rem] lg:w-[28rem] h-[22rem] fastest-fade" data-controller="basic-chart"
              data-basic-chart-target="chart"
              data-title="M2 Money Supply 🇺🇸"
              data-yTitle="$ billions"
@@ -164,16 +164,17 @@ content = @`
         </div>
     </div>
 
-    <div>
-        <ol class="mx-2 2xl:mx-64 list-decimal list-inside lg:columns-3 md:columns-2">
-            @for(var ticker : spy500Companies)
-                <a href="/stock/${ticker.symbol()}" up-follow up-instant>
-                    <li class="hover:bg-black hover:text-white rounded-md px-2 mx-auto truncate">${ticker.name()}
-                        <span class="float-right">${ticker.symbol()}</span></li>
+    <ol class="mx-2 2xl:mx-64 list-decimal lg:columns-3 md:columns-2">
+        @for(int i = 1; i < spy500Companies.size(); i++)
+            <li class="list-none">
+                <a href="/stock/${spy500Companies.get(i).symbol()}" up-follow up-instant class="hover:bg-black hover:text-white rounded-md px-2 mx-auto inline-block align-middle w-full flex space-between">
+                    <div class="w-10">${i}.</div>
+                    <div class="truncate">${spy500Companies.get(i).name()}</div>
+                    <div class="ml-auto"><span>${spy500Companies.get(i).symbol()}</span></div>
                 </a>
-            @endfor
-        </ol>
-    </div>
+            </li>
+        @endfor
+    </ol>
 
     <footer class="float-right inline-block text-sm mb-4 mr-4">
 
