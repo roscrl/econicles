@@ -1,4 +1,4 @@
-# [econicles]
+# econicles
 
 economy & stock viewer<br>
 
