@@ -1,4 +1,4 @@
-# [econicles.com](http://econicles.com)
+# [econicles]
 
 economy & stock viewer<br>
 
